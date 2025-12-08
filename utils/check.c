@@ -6,11 +6,22 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:39:24 by hammeah           #+#    #+#             */
-/*   Updated: 2025/12/08 19:41:45 by hammeah          ###   ########.fr       */
+/*   Updated: 2025/12/08 19:54:56 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "libft.h"
+
+char    **ft_cmd_split(char **argv)
+{
+    char    **cmd_ret;
+
+    
+
+    
+}
+
 
 bool    ft_check(int argc, char **argv)
 {
