@@ -6,28 +6,38 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:50:34 by hammeah           #+#    #+#             */
-/*   Updated: 2025/12/17 10:42:16 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/01 17:15:29 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    ft_print_error(const char *str)
+/**
+ * @brief print the str error message on the STDERR and exit the program
+ *
+ * @param str personalize str message to be print
+ */
+void	ft_print_error(const char *str)
 {
-    perror(str);
-    exit(EXIT_FAILURE);
+	perror(str);
+	exit(EXIT_FAILURE);
 }
 
-void    ft_free_split(char **split)
+/**
+ * @brief free the allocated memory use by the ft_split function
+ *
+ * @param split char ** from ft_split function
+ */
+void	ft_free_split(char **split)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (split[i])
-    {
-        free(split);
-        split = NULL;
-        i++;
-    }
-    free(split);
+	i = 0;
+	while (split[i])
+	{
+		free(split);
+		split = NULL;
+		i++;
+	}
+	free(split);
 }
