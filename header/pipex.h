@@ -6,18 +6,19 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:33:42 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/01 17:40:39 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/02 19:01:45 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <../libft/libft.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h> 
 
 typedef struct s_pipex
 {
@@ -40,5 +41,13 @@ void	ft_free_split(char **split);
 /*check.c*/
 
 bool	ft_check(int argc, char **argv);
+void	ft_pipex(t_pipex *data, char **argv, char **envp);
+
+/*cmd.c*/
+
+void	ft_last_cmd(t_pipex *data, char **argv, char **envp);
+void	ft_first_cmd(t_pipex *data, char **argv, char **envp);
+void	ft_exec_cmd(t_pipex *data, char *argv, char **envp);
+char	*ft_cmd_path(char *cmd, char **envp);
 
 #endif
