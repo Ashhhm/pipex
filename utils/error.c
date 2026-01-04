@@ -6,7 +6,7 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:50:34 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/02 16:04:33 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/04 23:17:29 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ void	ft_free_split(char **split)
 {
 	int	i;
 
+	if (!split)
+		return ;
 	i = 0;
 	while (split[i])
 	{
-		free(split);
-		split = NULL;
+		free(split[i]);
+		split[i] = NULL;
 		i++;
 	}
 	free(split);

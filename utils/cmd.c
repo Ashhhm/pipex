@@ -6,7 +6,7 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 18:56:56 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/02 18:59:35 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/04 23:28:36 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_cmd_path(char *cmd, char **envp)
 {
 	int		i;
 	char	*cmd_path;
+	char	*cmd_path_b;
 	char	**split_path;
 
 	i = 0;
@@ -26,17 +27,18 @@ char	*ft_cmd_path(char *cmd, char **envp)
 			split_path = ft_split(envp[i], ':');
 		i++;
 	}
-	i = 0;
-	while (split_path[i])
+	i = -1;
+	while (split_path[++i])
 	{
-		cmd_path = ft_strjoin(split_path[i], "/");
-		cmd_path = ft_strjoin(cmd_path, cmd);
+		cmd_path_b = ft_strjoin(split_path[i], "/");
+		cmd_path = ft_strjoin(cmd_path_b, cmd);
+		free(cmd_path_b);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
 		cmd_path = NULL;
-		i++;
 	}
+	ft_free_split(split_path);
 	return (NULL);
 }
 
@@ -45,10 +47,20 @@ void	ft_exec_cmd(t_pipex *data, char *argv, char **envp)
 	char	**cmd;
 	char	*cmd_path;
 
+	cmd = NULL;
 	cmd = ft_split(argv, ' ');
 	cmd_path = ft_cmd_path(cmd[0], envp);
+	if (cmd_path == NULL)
+	{
+		ft_free_split(cmd);
+		ft_print_error("cmd not found");
+		return ;
+	}
 	if (execve(cmd_path, cmd, envp) == -1)
-		ft_print_error("fisrt cmd exe error\n");
+    {
+		ft_free_split(cmd);
+        ft_print_error("cmd exe error\n");
+    }
 }
 
 void	ft_first_cmd(t_pipex *data, char **argv, char **envp)
@@ -69,7 +81,7 @@ void	ft_first_cmd(t_pipex *data, char **argv, char **envp)
 void	ft_last_cmd(t_pipex *data, char **argv, char **envp)
 {
 	close(data->p_fd[WRITE]);
-	data->outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_APPEND);
+	data->outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->outfile_fd == -1)
 		ft_print_error("open outfile error\n");
 	if (dup2(data->outfile_fd, STDOUT_FILENO) == -1)
