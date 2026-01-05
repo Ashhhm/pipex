@@ -10,13 +10,12 @@ HDRS = header/pipex.h
 
 OBJS = $(SRC:.c=.o)
 
-LIBFT_DIR = ../libft
-LIBFT_NAME = libft.a
-LIBFT = $(LIBFT_DIR)/$(LIBFT_NAME)
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
 AR = ar rcs
-flags = -Wall -Wextra -Werror -g -I./header -I$(LIBFT)
+FLAGS = -Wall -Wextra -Werror -I./header -I$(LIBFT_DIR)
 
 all : $(NAME)
 

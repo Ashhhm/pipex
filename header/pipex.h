@@ -6,7 +6,7 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:33:42 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/02 19:01:45 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/05 13:48:21 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_pipex(t_pipex *data, char **argv, char **envp);
 
 void	ft_last_cmd(t_pipex *data, char **argv, char **envp);
 void	ft_first_cmd(t_pipex *data, char **argv, char **envp);
-void	ft_exec_cmd(t_pipex *data, char *argv, char **envp);
+void	ft_exec_cmd( char *argv, char **envp);
 char	*ft_cmd_path(char *cmd, char **envp);
 
 #endif
