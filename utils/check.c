@@ -6,13 +6,20 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:39:24 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/03 18:37:18 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/05 11:18:59 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 #include "../libft/libft.h"
 
+/**
+ * @brief fonction to create a child process and execute both cmd 
+ * 
+ * @param data struct needed to create the pipe
+ * @param argv array with both cmd and infile and outfile
+ * @param envp environement array with the path of all cmd
+ */
 void	ft_pipex(t_pipex *data, char **argv, char **envp)
 {
 	pid_t	f_value;

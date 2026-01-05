@@ -6,13 +6,21 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 18:56:56 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/05 06:43:20 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/05 12:08:49 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 #include "../libft/libft.h"
 
+/**
+ * @brief function the find the PATH key=value from the envp array and check 
+ * if a access path contening the cmd is valid or no 
+ * 
+ * @param cmd char* with the cmd 
+ * @param envp environement array with the path of all cmd
+ * @return char* cmd path  
+ */
 char	*ft_cmd_path(char *cmd, char **envp)
 {
 	int		i;
@@ -41,7 +49,13 @@ char	*ft_cmd_path(char *cmd, char **envp)
 	ft_free_split(split_path);
 	return (NULL);
 }
-
+/**
+ * @brief function to execute cmd if the path is existing 
+ * 
+ * @param data struct needed to create the pipe
+ * @param argv array with both cmd and infile and outfile
+ * @param envp environement array with the path of all cmd 
+ */
 void	ft_exec_cmd(t_pipex *data, char *argv, char **envp)
 {
 	char	**cmd;
@@ -70,7 +84,13 @@ void	ft_exec_cmd(t_pipex *data, char *argv, char **envp)
         ft_print_error("cmd exe error\n");
     }
 }
-
+/**
+ * @brief open the infile and executing the first cmd function
+ * 
+ * @param data struct needed to create the pipe
+ * @param argv array with both cmd and infile and outfile
+ * @param envp environement array with the path of all cmd 
+ */
 void	ft_first_cmd(t_pipex *data, char **argv, char **envp)
 {
 	close(data->p_fd[READ]);
@@ -85,7 +105,13 @@ void	ft_first_cmd(t_pipex *data, char **argv, char **envp)
 	close(data->p_fd[WRITE]);
 	ft_exec_cmd(data, argv[2], envp);
 }
-
+/**
+ * @brief open or create the outfile and executing the last cmd function
+ * 
+ * @param data struct needed to create the pipe
+ * @param argv array with both cmd and infile and outfile
+ * @param envp environement array with the path of all cmd
+ */
 void	ft_last_cmd(t_pipex *data, char **argv, char **envp)
 {
 	close(data->p_fd[WRITE]);
