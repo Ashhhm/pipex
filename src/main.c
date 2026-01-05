@@ -6,7 +6,7 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:35:37 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/02 16:07:09 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/05 06:56:22 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	data;
 
-	if (argc >= 5 && ft_check(argc, argv) == true)
+	if (argc == 5 && ft_check(argc, argv) == true)
 	{
 		data.nb_argc = argc;
 		data.nb_cmd = argc - 3;
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_print_error("");
+		ft_print_error("missing 5 arg or one arg empty");
 	}
 	return (0);
 }

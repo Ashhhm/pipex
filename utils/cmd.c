@@ -6,7 +6,7 @@
 /*   By: hammeah <hammeah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 18:56:56 by hammeah           #+#    #+#             */
-/*   Updated: 2026/01/04 23:28:36 by hammeah          ###   ########.fr       */
+/*   Updated: 2026/01/05 06:43:20 by hammeah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ void	ft_exec_cmd(t_pipex *data, char *argv, char **envp)
 
 	cmd = NULL;
 	cmd = ft_split(argv, ' ');
+	if (access(cmd[0], F_OK | X_OK) == 0)
+		{
+			if (execve(cmd[0], cmd, envp) == -1)
+    		{
+				ft_free_split(cmd);
+        		ft_print_error("cmd exe error\n");
+    		}	
+		}
 	cmd_path = ft_cmd_path(cmd[0], envp);
 	if (cmd_path == NULL)
 	{
